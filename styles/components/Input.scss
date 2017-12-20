@@ -1,0 +1,10 @@
+.input {
+  font-size: ($font-size * 0.8);
+  height: 30px;
+  padding-left: 8px;
+  width: 200px;
+
+  &.full {
+    width: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+.popover_target {
+  border: 1px solid black;
+  border-radius: 7rem;
+  font-family: $font-family;
+  font-size: 0.8rem;
+  height: 1.25rem;
+  padding: 0.05rem 0;
+  position: relative;
+  margin: 10rem;
+  text-align: center;
+  width: 1.25rem;
+}
+
+.popover {
+  border: 1px solid black;
+  display: none;
+  font-size: 0.9rem;
+  min-height: 6rem;
+  padding: 0.5rem;
+  position: absolute;
+  right: -10rem;
+  text-align: left;
+  top: 1rem;
+  width: 10rem;
+
+  &.active {
+    display: inline;
+  }
+}

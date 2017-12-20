@@ -1,0 +1,26 @@
+.switch {
+  background-color: #777;
+  border: 1px solid #ccc;
+  border-radius: 13px;
+  cursor: pointer;
+  display: inline-block;
+  height: 1.65rem;
+  width: 3.25rem;
+
+  .toggle {
+    background-color: #F5F5F5;
+    border: 1px solid #999;
+    border-radius: 12px;
+    height: 24px;
+    left: 0;
+    opacity: 0.3;
+    position: relative;
+    width: 25px;
+
+    &.active {
+      background-color: white;
+      left: 1.55rem;
+      opacity: 1;
+    }
+  }
+}
