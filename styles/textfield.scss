@@ -1,0 +1,23 @@
+.text_field {
+  
+  &.skinny {
+    width: 5rem !important;
+    
+    label {
+      font-size: 0.75rem !important;
+    }
+  }
+  
+  &.small {
+    width: 8rem !important;
+  }
+  
+  &.full {
+    width: 100% !important;
+  }
+  
+  &.big {
+    height: 6rem !important;
+    width: 100% !important;
+  }
+}

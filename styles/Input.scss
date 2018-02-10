@@ -1,8 +1,58 @@
-.input {
-  font-size: ($font-size * 0.8);
-  height: 30px;
-  padding-left: 8px;
-  width: 200px;
+.input_container {
+  height: 3rem;
+  font-family: $font_family;
+  width: 20rem;
+
+  .labell {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .wrapper {
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    color: rgba(0, 0, 0, 0.87);
+    height: 100%;
+    justify-content: space-between;
+    width: 100%;
+
+    input {
+      border-style: solid;
+      border: none;
+      height: 100%;
+      font-size: 0.9rem;
+      outline: none;
+      padding-left: 1rem;
+      width: 100%;
+    }
+
+    :focus {
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 9px, rgba(0, 0, 0, 0.12) 0px 2px 6px;
+    }
+  }
+  
+  &.small {
+    height: 2rem;
+    width: 12rem;
+    
+    .labell {
+      font-size: 0.6rem;
+      margin-left: 0.3rem;
+    }
+    
+    input {
+      font-size: 0.8rem;
+      padding-left: 0.6rem;
+    }
+  }
+  
+  &.skinny {
+    width: 8rem;
+  }
 
   &.full {
     width: 100%;

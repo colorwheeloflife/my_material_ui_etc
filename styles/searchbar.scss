@@ -1,0 +1,95 @@
+.searchbar {
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.2rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  height: 3rem;
+  font-family: Roboto, sans-serif;
+  justify-content: space-between;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+
+  .input_wrapper {
+    display: inline-block;
+    padding-top: 0.8rem;
+    padding-left: 0.8rem;
+    position: relative;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    width: 85%;
+    
+    input {
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1rem;
+      outline: none;
+      position: relative;
+      width: 100%;
+
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.3) !important;
+      }
+    }
+  }
+
+  .button {
+    width: 15%;
+
+    .search_symbol {
+      display: inline-block;
+      color: rgba(0, 0, 0, 0.87);
+      cursor: pointer;
+      fill: rgb(158, 158, 158);
+      float: right;
+      height: 1rem;
+      margin-top: 1rem;
+      margin-right: 0.8rem;
+      width: 1rem;
+    }
+  }
+  
+  &.small {
+    height: 2rem;
+    
+    .input_wrapper {
+      padding-top: 0.4rem;
+      padding-left: 0.8rem;
+    }
+
+    input {
+      font-size: 0.9rem;
+    }
+
+    .button .search_symbol {
+      height: 1rem;
+      margin-top: 0.5rem;
+      width: 1rem;
+    }
+  }
+  
+  &.large {
+    height: 4rem;
+
+    .input_wrapper {
+      padding-top: 1.3rem;
+      padding-left: 2rem;
+    }
+
+    input {
+      font-size: 1.1rem;
+    }
+
+    .button .search_symbol {
+      height: 1.8rem;
+      margin-top: 1.3rem;
+      width: 1.8rem;
+    }
+  }
+
+  &:focus {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 9px, rgba(0, 0, 0, 0.12) 0px 2px 6px;
+  }
+}
