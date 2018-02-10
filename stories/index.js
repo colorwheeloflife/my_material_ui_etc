@@ -2,7 +2,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import { Input, Searchbar, Textfield } from '../src/index.js';
+import { Input, Searchbar, Selectfield, Textfield } from '../src/index.js';
 
 
 /* Input */
@@ -31,6 +31,19 @@ function Search(value) {
 
 storiesOf('Searchbar/General', module)
   .add('basic', () => <Searchbar { ...search }>Basic</Searchbar>);
+  
+  
+
+/* Selectfield */
+const select = {
+  items: ['None', 'Item 1', 'Item 2', 'Item 3'],
+  label: 'label',
+  // multiple: true,
+  name: 'standard'
+};
+
+storiesOf('Selectfield/General', module)
+  .add('basic', () => <Selectfield { ...select }>Basic</Selectfield>);
 
 
 
