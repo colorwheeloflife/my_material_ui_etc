@@ -7,6 +7,8 @@ import {
   PlusButton,
   Searchbar, 
   Selectfield, 
+  TabGroup,
+  EnhancedTable,
   Textarea, 
   Textfield 
 } from '../src/index.js';
@@ -61,6 +63,28 @@ const select = {
 
 storiesOf('Selectfield/General', module)
   .add('basic', () => <Selectfield { ...select }>Basic</Selectfield>);
+
+
+/* TabGroup */
+const tabs = {
+  items: ['Option A', 'Option B', 'Option C']
+};
+
+storiesOf('TabGroup/General', module)
+  .add('basic', () => <TabGroup { ...tabs }>Basic</TabGroup>);
+  
+  
+const table = {
+  classes: {
+    root: 'root',
+    tableWrapper: 'tableWrapper',
+    table: 'table',
+    title: 'title'
+  }
+}
+  
+storiesOf('EnhancedTable/General', module)
+  .add('basic', () => <EnhancedTable { ...table }>Basic</EnhancedTable>);
 
 
 /* Textarea */

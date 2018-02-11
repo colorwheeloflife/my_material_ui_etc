@@ -32,15 +32,13 @@ export default class Textfield extends Component {
     );
 
     return (
-      <MuiThemeProvider>
-        <TextField
-          autoComplete={ autoComplete }
-          className={ textFieldClass }
-          hintText={ placeholder }
-          floatingLabelText={ label || null }
-          name={ name }
-          onChange={ this.handleInput } />
-      </MuiThemeProvider>
+      <TextField
+        autoComplete={ autoComplete }
+        className={ textFieldClass }
+        hintText={ placeholder }
+        floatingLabelText={ label || null }
+        name={ name }
+        onChange={ this.handleInput } />
     )
   }
 }
