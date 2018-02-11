@@ -2,7 +2,14 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import { Input, Searchbar, Selectfield, Textfield } from '../src/index.js';
+import { 
+  Input, 
+  PlusButton,
+  Searchbar, 
+  Selectfield, 
+  Textarea, 
+  Textfield 
+} from '../src/index.js';
 
 
 /* Input */
@@ -10,13 +17,24 @@ const input = {
   autocomplete: 'off',
   name: 'first_name',
   label: 'First Name',
-  placeholder: 'Placeholder',
-  size: 'small skinny'
+  placeholder: 'Placeholder'
 };
 
 storiesOf('Input/General', module)
   .add('basic', () => <Input { ...input }>Basic</Input>);
 
+
+/* PlusButton */
+const plusbutton = {
+  onClick: onClick()
+};
+
+function onClick() {
+  console.log('click');
+}
+
+storiesOf('PlusButton/General', module)
+  .add('basic', () => <PlusButton { ...plusbutton }>Basic</PlusButton>);
 
 
 /* Searchbar */
@@ -32,7 +50,6 @@ function Search(value) {
 storiesOf('Searchbar/General', module)
   .add('basic', () => <Searchbar { ...search }>Basic</Searchbar>);
   
-  
 
 /* Selectfield */
 const select = {
@@ -45,6 +62,18 @@ const select = {
 storiesOf('Selectfield/General', module)
   .add('basic', () => <Selectfield { ...select }>Basic</Selectfield>);
 
+
+/* Textarea */
+const textarea = {
+  autocomplete: 'off',
+  name: 'first_name',
+  label: 'First Name',
+  placeholder: 'Placeholder',
+  size: 'full'
+};
+
+storiesOf('Textarea/General', module)
+  .add('basic', () => <Textarea { ...textarea }>Basic</Textarea>);
 
 
 /* Textfield */

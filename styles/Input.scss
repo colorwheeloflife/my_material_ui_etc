@@ -57,4 +57,8 @@
   &.full {
     width: 100%;
   }
+  
+  &.textbox {
+    min-height: 8rem;
+  }
 }

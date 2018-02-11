@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Styler from '../lib/styler';
 
-export default class Input extends Component {
+export default class Textarea extends Component {
   static propTypes = {
     placeholder: PropTypes.string,
     size: PropTypes.oneOf(['skinny', 'small', 'normal', 'full', 'big'])
@@ -26,6 +25,7 @@ export default class Input extends Component {
 
     const containerClass = Styler(
       'input_container',
+      'textarea',
       className,
       size
     );
@@ -34,7 +34,7 @@ export default class Input extends Component {
       <div className={ containerClass }>
         <div className={ label ? 'labell' : 'hidden' }> { label } </div>
         <div className='wrapper'>
-          <input
+          <textarea
             autoComplete={ autocomplete }
             className='input'
             name={ name }
