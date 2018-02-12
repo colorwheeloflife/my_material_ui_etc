@@ -8,21 +8,13 @@ import Table, {
 import Checkbox from 'material-ui/Checkbox';
 import Tooltip from 'material-ui/Tooltip';
 
-const columnData = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
-];
-
 export default class TableHeader extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
 
   render() {
-    const { numSelected, onSelectAllClick, order, orderBy, rowCount } = this.props;
+    const { headers, numSelected, onSelectAllClick, order, orderBy, rowCount } = this.props;
 
     return (
       <TableHead>
@@ -33,7 +25,7 @@ export default class TableHeader extends React.Component {
               checked={ numSelected === rowCount }
               onChange={ onSelectAllClick } />
           </TableCell>
-          { columnData.map(column => {
+          { headers.map(column => {
             return (
               <TableCell
                 key={ column.id }

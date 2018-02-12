@@ -14,77 +14,99 @@ import {
 } from '../src/index.js';
 
 
-/* Input */
-const input = {
-  autocomplete: 'off',
-  name: 'first_name',
-  label: 'First Name',
-  placeholder: 'Placeholder'
-};
-
-storiesOf('Input/General', module)
-  .add('basic', () => <Input { ...input }>Basic</Input>);
-
-
-/* PlusButton */
-const plusbutton = {
-  onClick: onClick()
-};
-
-function onClick() {
-  console.log('click');
-}
-
-storiesOf('PlusButton/General', module)
-  .add('basic', () => <PlusButton { ...plusbutton }>Basic</PlusButton>);
-
-
-/* Searchbar */
-const search = {
-  onSearch: Search(),
-  size: 'small'
-};
-
-function Search(value) {
-  console.log(value);
-}
-
-storiesOf('Searchbar/General', module)
-  .add('basic', () => <Searchbar { ...search }>Basic</Searchbar>);
+// /* Input */
+// const input = {
+//   autocomplete: 'off',
+//   name: 'first_name',
+//   label: 'First Name',
+//   placeholder: 'Placeholder'
+// };
+// 
+// storiesOf('Input/General', module)
+//   .add('basic', () => <Input { ...input }>Basic</Input>);
+// 
+// 
+// /* PlusButton */
+// const plusbutton = {
+//   onClick: onClick()
+// };
+// 
+// function onClick() {
+//   console.log('click');
+// }
+// 
+// storiesOf('PlusButton/General', module)
+//   .add('basic', () => <PlusButton { ...plusbutton }>Basic</PlusButton>);
+// 
+// 
+// /* Searchbar */
+// const search = {
+//   onSearch: Search(),
+//   size: 'small'
+// };
+// 
+// function Search(value) {
+//   console.log(value);
+// }
+// 
+// storiesOf('Searchbar/General', module)
+//   .add('basic', () => <Searchbar { ...search }>Basic</Searchbar>);
+// 
+// 
+// /* Selectfield */
+// const select = {
+//   items: ['None', 'Item 1', 'Item 2', 'Item 3'],
+//   label: 'label',
+//   // multiple: true,
+//   name: 'standard'
+// };
+// 
+// storiesOf('Selectfield/General', module)
+//   .add('basic', () => <Selectfield { ...select }>Basic</Selectfield>);
+// 
+// 
+// /* TabGroup */
+// const tabs = {
+//   items: ['Option A', 'Option B', 'Option C']
+// };
+// 
+// storiesOf('TabGroup/General', module)
+//   .add('basic', () => <TabGroup { ...tabs }>Basic</TabGroup>);
+// 
   
-
-/* Selectfield */
-const select = {
-  items: ['None', 'Item 1', 'Item 2', 'Item 3'],
-  label: 'label',
-  // multiple: true,
-  name: 'standard'
-};
-
-storiesOf('Selectfield/General', module)
-  .add('basic', () => <Selectfield { ...select }>Basic</Selectfield>);
-
-
-/* TabGroup */
-const tabs = {
-  items: ['Option A', 'Option B', 'Option C']
-};
-
-storiesOf('TabGroup/General', module)
-  .add('basic', () => <TabGroup { ...tabs }>Basic</TabGroup>);
   
-  
+/* Table */
 const table = {
   classes: {
     root: 'root',
     tableWrapper: 'tableWrapper',
     table: 'table',
-    title: 'title'
+    title: 'title',
+    spacer: 'spacer',
+    actions: 'actions'
+  },
+  headers: [
+    { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
+    { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
+    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
+    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' }
+  ],
+  title: 'Nutrition',
+  actionButton: {
+    color: 'primary',
+    label: 'Add To Cookbook',
+    func: AddToCookbook()
   }
+}
+
+function AddToCookbook() {
+  console.log('cookbook!');
 }
   
 storiesOf('EnhancedTable/General', module)
   .add('basic', () => <EnhancedTable { ...table }>Basic</EnhancedTable>);
+
 
 
 /* Textarea */

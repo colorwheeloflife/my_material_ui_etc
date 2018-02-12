@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'material-ui/Button';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Tooltip from 'material-ui/Tooltip';
@@ -8,38 +9,26 @@ import { lighten } from 'material-ui/styles/colorManipulator';
 import IconButton from 'material-ui/IconButton';
 import Styler from '../lib/styler';
 
-const toolbarStyles = theme => ({
-  root: {
-    paddingRight: theme.spacing.unit,
-  },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-          color: theme.palette.secondary.dark,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.4),
-        }
-      : {
-          color: lighten(theme.palette.secondary.light, 0.4),
-          backgroundColor: theme.palette.secondary.dark,
-        },
-  spacer: {
-    flex: '1 1 100%',
-  },
-  actions: {
-    color: theme.palette.text.secondary,
-  },
-  title: {
-    flex: '0 0 auto',
-  },
-});
-
 let TableToolbar = props => {
-  const { classes, numSelected } = props;
+  const { actionButton, classes, numSelected, title } = props;
   
   const rootClass = Styler(
+    'toolbar',
     classes.root,
     numSelected > 0 ? classes.highlight : ''
   );
+  
+  const actionsClass = Styler(
+    'actions',
+    classes.actions,
+    numSelected > 0 ? classes.highlight : ''
+  );
+  
+  const actionButtonClass = Styler(
+    'action_button',
+    classes.button,
+    numSelected > 0 ? actionButton.label : 'hidden'
+  )
 
   return (
     <Toolbar
@@ -48,25 +37,19 @@ let TableToolbar = props => {
         { numSelected > 0 ? (
           <Typography variant='subheading'> { numSelected } selected </Typography>
         ) : (
-          <Typography variant='title'>Nutrition</Typography>
+          <Typography variant='title'> { title } </Typography>
         )}
       </div>
       <div className={ classes.spacer } />
-      <div className={ classes.actions }>
-        { numSelected > 0 ? (
-          <Tooltip title='Delete'>
-            <IconButton aria-label='Delete'>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title='Filter list'>
-            <IconButton aria-label='Filter list'>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </div>
+      <div className={ actionsClass }>
+        <Button 
+          className={ actionButtonClass }
+          color={ actionButton.color }
+          onClick={ actionButton.func }
+          variant='raised' >
+          { actionButton.label }
+        </Button>
+      </div>  
     </Toolbar>
   );
 };
