@@ -1,0 +1,54 @@
+.table {
+  
+  thead tr {
+    .header {
+      &.non_text {
+        padding-right: 1rem !important;
+        
+        &.non_numeric {
+          padding-left: 1rem !important;
+        }
+      }
+    }
+  }
+  
+  tbody tr {
+    .cell {
+      padding-top: 0.3rem !important;
+      padding-right: 3.5rem !important;
+      padding-bottom: 0.3rem !important;
+      padding-left: 1rem !important;
+      
+      &.no_padding {
+        padding: 0 !important;
+        
+        &.name {
+          padding-right: 8rem !important;
+        }
+      }
+      
+      &.non_text {
+        padding-right: 1rem !important;
+      }
+      
+      &.last {
+        padding-right: 1.5rem !important;
+      }
+    }
+  }
+  
+  tbody tr td input {
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 1px 3px, rgba(0, 0, 0, 0.12) 1px 1px 3px;
+    font-family: $font-family;
+    font-size: 0.7rem;
+    outline: none;
+    padding: 0.2rem !important;
+    text-align: center;
+    width: 4rem;
+  }
+  
+  tbody tr td .select_field_container div {
+    margin-top: 0 !important;
+  }
+}

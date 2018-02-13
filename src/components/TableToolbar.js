@@ -2,11 +2,6 @@ import React from 'react';
 import Button from 'material-ui/Button';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Tooltip from 'material-ui/Tooltip';
-import DeleteIcon from 'material-ui-icons/Delete';
-import FilterListIcon from 'material-ui-icons/FilterList';
-import { lighten } from 'material-ui/styles/colorManipulator';
-import IconButton from 'material-ui/IconButton';
 import Styler from '../lib/styler';
 
 let TableToolbar = props => {

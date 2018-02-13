@@ -1,3 +1,21 @@
 .select_field_container {
   min-width: 10rem !important;  
+  
+  &.skinny {
+    min-width: 4.5rem !important; 
+    
+    label {
+      font-size: 0.9rem !important;
+    }
+    
+    div div div {
+      font-size: 0.7rem !important;
+    }
+  }
+}
+
+.menu_item {
+  &.skinny {
+    font-size: 0.8rem !important;
+  }
 }

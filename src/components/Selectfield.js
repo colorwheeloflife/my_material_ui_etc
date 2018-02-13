@@ -8,12 +8,12 @@ import Checkbox from 'material-ui/Checkbox';
 import { ListItemText } from 'material-ui/List';
 import Styler from '../lib/styler';
 
-export default class SimpleSelect extends Component {
+export default class Selectfield extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      value: '',
+      value: this.props.initial || '',
       value_array: []
     }
   }
@@ -27,7 +27,7 @@ export default class SimpleSelect extends Component {
   };
 
   render() {
-    const { className, items, label, multiple, name, size } = this.props;
+    const { className, initial, items, label, multiple, name, size } = this.props;
     const { value, value_array } = this.state;
     
     const formClass = Styler(
@@ -37,8 +37,13 @@ export default class SimpleSelect extends Component {
     );
     
     const menu_items = items.map((item, index) => {
+      const menuItemClass = Styler(
+        'menu_item',
+        size
+      );
+      
       return <MenuItem
-               className='menu_item'
+               className={ menuItemClass }
                key={ index }
                value={ item !== 'None' ? index + 1 : '' }> 
                { item !== 'None' ? item : <em>{ item }</em> }

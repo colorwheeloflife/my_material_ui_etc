@@ -13,11 +13,13 @@ import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import TableHeader from './TableHeader';
 import TableToolbar from './TableToolbar';
+import Selectfield from './Selectfield';
+import Styler from '../lib/styler';
 
 let counter = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(name, category, amount, unit, calories, protein, carbs, fat) {
   counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
+  return { id: counter, name, category, amount, unit, calories, protein, carbs, fat };
 }
 
 export default class EnhancedTable extends React.Component {
@@ -29,19 +31,19 @@ export default class EnhancedTable extends React.Component {
       orderBy: 'calories',
       selected: [],
       data: [
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Donut', 452, 25.0, 51, 4.9),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-        createData('Honeycomb', 408, 3.2, 87, 6.5),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Jelly Bean', 375, 0.0, 94, 0.0),
-        createData('KitKat', 518, 26.0, 65, 7.0),
-        createData('Lollipop', 392, 0.2, 98, 0.0),
-        createData('Marshmallow', 318, 0, 81, 2.0),
-        createData('Nougat', 360, 19.0, 9, 37.0),
-        createData('Oreo', 437, 18.0, 63, 4.0),
+        createData('Cupcake', 'Baking', 100, 1, 305, 3.7, 67, 4.3),
+        createData('Donut', 'Baking', 100, 1, 452, 25.0, 51, 4.9),
+        createData('Eclair', 'Baking', 100, 1, 262, 16.0, 24, 6.0),
+        createData('Frozen yoghurt', 'Dairy', 100, 1, 159, 6.0, 24, 4.0),
+        createData('Gingerbread', 'Baking', 100, 1, 356, 16.0, 49, 3.9),
+        createData('Honeycomb', 'Baking', 100, 1, 408, 3.2, 87, 6.5),
+        createData('Ice cream sandwich', 'Sweets', 100, 1, 237, 9.0, 37, 4.3),
+        createData('Jelly Bean', 'Sweets', 100, 1, 375, 0.0, 94, 0.0),
+        createData('KitKat', 'Sweets', 100, 1, 518, 26.0, 65, 7.0),
+        createData('Lollipop', 'Sweets', 100, 1, 392, 0.2, 98, 0.0),
+        createData('Marshmallow', 'Sweets', 100, 1, 318, 0, 81, 2.0),
+        createData('Nougat', 'Sweets', 100, 1, 360, 19.0, 9, 37.0),
+        createData('Oreo', 'Sweets', 100, 1, 437, 18.0, 63, 4.0),
       ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
       page: 0,
       rowsPerPage: 5,
@@ -108,29 +110,66 @@ export default class EnhancedTable extends React.Component {
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
     
+    const tableClassName = Styler(
+      'table',
+      classes.table
+    );
+    
     const tableRows = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
       const isSelected = this.isSelected(n.id);
       
       return (
         <TableRow
           hover
-          onClick={event => this.handleClick(event, n.id)}
           role="checkbox"
-          aria-checked={isSelected}
-          tabIndex={-1}
-          key={n.id}
-          selected={isSelected}
+          aria-checked={ isSelected }
+          tabIndex={ -1 }
+          key={ n.id }
+          selected={ isSelected }
         >
-          <TableCell padding="checkbox">
+          <TableCell 
+            onClick={ event => this.handleClick(event, n.id) }
+            padding="checkbox">
             <Checkbox checked={ isSelected } />
           </TableCell>
           { headers.map(header => {
+            const cellClass = Styler(
+              'cell',
+              header.id,
+              header.disablePadding ? 'no_padding' : '',
+              headers.indexOf(header) === headers.length -1 ? 'last' : '',
+              (header.type === 'input' || header.type === 'dropdown') ? 'non_text' : ''
+            );
+            
             const properties = {
               key: header.id,
-              numeric: header.numeric,
-              padding: header.disablePadding ? 'none' : 'default',
+              className: cellClass,
+              numeric: header.numeric
             }
-            return <TableCell { ...properties }> { n[header.id] } </TableCell>
+            
+            let value;
+            
+            switch (header.type) {
+              case 'normal':
+                value = n[header.id];
+                break;
+              case 'input':
+                value = <input 
+                          value={ n[header.id] } /> 
+                break;
+              case 'dropdown':
+                const properties = {
+                  initial: n.unit,
+                  items: header.items,
+                  name: 'unit',
+                  size: 'skinny'
+                };
+                
+                value = <Selectfield { ...properties } /> 
+                break;
+            }
+            
+            return <TableCell { ...properties }> { value } </TableCell>
           }, this)}
         </TableRow>
       );
@@ -146,7 +185,7 @@ export default class EnhancedTable extends React.Component {
         <div className={ classes.tableWrapper }>
         
         
-          <Table className={ classes.table }>
+          <Table className={ tableClassName }>
           
             <TableHeader
               headers={ headers }
@@ -164,14 +203,14 @@ export default class EnhancedTable extends React.Component {
               
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={ 6 } />
+                  <TableCell colSpan={ headers.length + 1 } />
                 </TableRow>
               )}
             </TableBody>
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  colSpan={ 6 }
+                  colSpan={ headers.length + 1 }
                   count={ data.length }
                   rowsPerPage={ rowsPerPage }
                   page={ page }
